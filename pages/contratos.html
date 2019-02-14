@@ -1,0 +1,277 @@
+<div class="container-fluid text-left" id="contratosDiv">
+    <div layout="column">
+        <div flex layout="column" style="overflow: auto; height: 100%;">
+            <md-content flex layout-margin>
+                <div class="panel-heading">
+                    <h3>Modulo Contratos</h3>
+                </div>
+                <md-divider></md-divider>
+                <form name="contratosForm">
+                    <div layout-gt-sm="row">
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="10">
+                            <label>Id Contrato</label>
+                            <input md-no-asterisk name="idContrato" ng-model="contrato.idContrato" disabled>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="30">
+                            <label>Empresa</label>
+                            <md-select name="company" ng-model="empresaSelected" ng-change="loadPeriodos(empresa.idEmpresa)" required>
+                                <md-option ng-value="empresa" ng-repeat="empresa in empresas">{{ empresa.razonSocial }}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <div flex="25">
+                            <md-autocomplete md-selected-item="ctrl.selectedItemEmp" md-search-text-change="ctrl.searchTextChangeEmp(ctrl.searchText)" md-search-text="ctrl.searchText" md-selected-item-change="ctrl.selectedItemChangeEmp(empleado)" md-items="empleado in ctrl.empleados | filter:ctrl.searchText"
+                                md-item-text="empleado.primerNombre.concat(' ',empleado.segundoNombre, ' ',empleado.primerApellido, ' ',empleado.segundoApellido)" md-min-length="0" md-floating-label="Empleado">
+                                <md-item-template>
+                                    <span class="item-metadata">
+						            <span class="item-metastat">
+						              <strong>{{empleado.numeroDocumento}}</strong> 
+						            </span>
+                                    </span>
+                                    <span class="item-title">
+						            <span> {{empleado.primerNombre}} {{empleado.segundoNombre}} {{empleado.primerApellido}} {{empleado.segundoApellido}}</span>
+                                    </span>
+
+                                </md-item-template>
+                            </md-autocomplete>
+                        </div>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="10">
+                            <label>Estado Contrato</label>
+                            <md-select name="type" ng-model="contrato.estado" required>
+                                <md-option value="ACTIVO">ACTIVO</md-option>
+                                <md-option value="INACTIVO">INACTIVO</md-option>
+                                <md-option value="SUSPENDIDO">SUSPENDIDO</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="15">
+                            <label>Fecha Inicio</label>
+                            <md-datepicker ng-model="contrato.fechaInicio" name="fechaInicial" md-min-date="minDate" md-max-date="maxDate" md-open-on-focus></md-datepicker>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="15">
+                            <label>Fecha Fin</label>
+                            <md-datepicker ng-model="contrato.fechaFin" md-open-on-focus></md-datepicker>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="20">
+                            <label>Tipo Contrato</label>
+                            <md-select name="type" ng-model="contrato.tipoContrato" required>
+                                <md-option value="1">Termino Indefinido</md-option>
+                                <md-option value="2">Obra o Labor Contratada</md-option>
+                                <md-option value="3">Salario Integral</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="20">
+                            <label>Periodo Pago</label>
+                            <md-select name="type" ng-model="contrato.periodoPago" required>
+                                <md-option value="QUINCENAL">Quincenal</md-option>
+                                <md-option value="MENSUAL">Mensual</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="15">
+                            <label>Jornada</label>
+                            <md-select name="type" ng-model="contrato.jornada" required>
+                                <md-option value="120">Medio Tiempo</md-option>
+                                <md-option value="180">Jornada de 6 Horas</md-option>
+                                <md-option value="240">Tiempo Completo</md-option>
+                                <md-option value="1">Por Horas</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="15">
+                            <label>Sueldo</label>
+                            <input required md-no-asterisk name="sueldo" ng-model="contrato.sueldo" type="number" ng-pattern="" step="0.01">
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="required">Este campo es requerido</div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <div flex="15">
+                            <md-autocomplete md-selected-item="ctrl.selectedItemBanco" md-search-text-change="ctrl.searchTextChange(ctrl.searchTextBanco)" md-search-text="ctrl.searchTextBanco" md-selected-item-change="ctrl.selectedItemChange(banco)" md-items="banco in ctrl.bancos | filter:ctrl.searchTextBanco"
+                                md-item-text="banco.razonSocial" md-min-length="0" md-floating-label="Banco">
+                                <md-item-template>
+                                    <span class="item-title">
+						            <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+						            <span> {{banco.razonSocial}} </span>
+                                    </span>
+                                </md-item-template>
+                            </md-autocomplete>
+                        </div>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="15">
+                            <label>Cuenta Número</label>
+                            <input required md-no-asterisk name="numeroCuenta" ng-model="contrato.numeroCuenta">
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="required">Este campo es requerido</div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="10">
+                            <label>Tipo Cuenta</label>
+                            <md-select name="type" ng-model="contrato.tipoCuenta" required>
+                                <md-option value="CORRIENTE">CORRIENTE</md-option>
+                                <md-option value="AHORROS">AHORROS</md-option>
+                                <md-option value="PREPAGO">PREPAGO</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <div flex="20">
+                            <md-autocomplete md-selected-item="ctrl.selectedItemCentroCostos" md-search-text-change="ctrl.searchTextChange(ctrl.searchTextCentroCostos)" md-search-text="ctrl.searchTextCentroCostos" md-selected-item-change="ctrl.selectedItemChange(centro)" md-items="centro in ctrl.centrosCostosType | filter:ctrl.searchTextCentroCostos"
+                                md-item-text="centro.descripcion" md-min-length="0" md-floating-label="Centro Costos">
+                                <md-item-template>
+                                    <span class="item-title">
+						            <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+						            <span> {{centro.descripcion}} </span>
+                                    </span>
+                                </md-item-template>
+                            </md-autocomplete>
+                        </div>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <div flex="20">
+                            <md-autocomplete md-selected-item="ctrl.selectedItemSubCentroCostos" md-search-text-change="ctrl.searchTextChange(ctrl.searchTextSubCentroCostos)" md-search-text="ctrl.searchTextSubCentroCostos" md-selected-item-change="ctrl.selectedItemChange(subcentro)"
+                                md-items="subcentro in ctrl.subCentrosCostosType | filter:ctrl.searchTextSubCentroCostos" md-item-text="subcentro.descripcion" md-min-length="0" md-floating-label="Subcentro Costos">
+                                <md-item-template>
+                                    <span class="item-title">
+						            <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+						            <span> {{subcentro.idCentroCostos}} </span>
+                                    </span>
+                                    <span class="item-title">
+						            <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+						            <span> {{subcentro.descripcion}} </span>
+                                    </span>
+                                </md-item-template>
+                            </md-autocomplete>
+                        </div>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-autocomplete md-selected-item="ctrl.selectedItemEPS" md-search-text-change="ctrl.searchTextChangeEPS(ctrl.searchTextEPS)" md-search-text="ctrl.searchTextEPS" md-selected-item-change="ctrl.selectedItemChangeEPS(eps)" md-items="eps in ctrl.entidadEPS | filter:ctrl.searchTextEPS"
+                            md-item-text="eps.razonSocial" md-min-length="0" md-floating-label="EPS">
+                            <md-item-template>
+                                <span class="item-title">
+						            <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+						            <span> {{eps.razonSocial}} </span>
+                                </span>
+                            </md-item-template>
+                        </md-autocomplete>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-autocomplete md-selected-item="ctrl.selectedItemCCP" md-search-text-change="ctrl.searchTextChangeCCP(ctrl.searchTextCCP)" md-search-text="ctrl.searchTextCCP" md-selected-item-change="ctrl.selectedItemChange(cajaCompensacion)" md-items="cajaCompensacion in ctrl.entidadCCP | filter:ctrl.searchTextCCP"
+                            md-item-text="cajaCompensacion.razonSocial" md-min-length="0" md-floating-label="Caja de Compensación">
+                            <md-item-template>
+                                <span class="item-title">
+                                    <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+                                    <span> {{cajaCompensacion.razonSocial}} </span>
+                                </span>
+                            </md-item-template>
+                        </md-autocomplete>
+
+                    </div>
+                    <div layout="row">
+                        <div flex="20" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-autocomplete md-selected-item="ctrl.selectedItemARL" md-search-text-change="ctrl.searchTextChangeARL(ctrl.searchTextARL)" md-search-text="ctrl.searchTextARL" md-selected-item-change="ctrl.selectedItemChangeARL(arl)" md-items="arl in ctrl.entidadARL | filter:ctrl.searchTextARL"
+                            md-item-text="arl.razonSocial" md-min-length="0" md-floating-label="ARL">
+                            <md-item-template>
+                                <span class="item-title">
+					            <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+					            <span> {{arl.razonSocial}} </span>
+                                </span>
+                            </md-item-template>
+                        </md-autocomplete>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-autocomplete md-selected-item="ctrl.selectedItemFDP" md-search-text-change="ctrl.searchTextChangeFDP(ctrl.searchTextFDP)" md-search-text="ctrl.searchTextFDP" md-selected-item-change="ctrl.selectedItemChangeFDP(fdp)" md-items="fdp in ctrl.entidadFDP | filter:ctrl.searchTextFDP"
+                            md-item-text="fdp.razonSocial" md-min-length="0" md-floating-label="Fondo de Pensiones">
+                            <md-item-template>
+                                <span class="item-title">
+					            <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+					            <span> {{fdp.razonSocial}} </span>
+                                </span>
+                            </md-item-template>
+                        </md-autocomplete>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-autocomplete md-selected-item="ctrl.selectedItemFDC" md-search-text-change="ctrl.searchTextChange(ctrl.searchTextFDC)" md-search-text="ctrl.searchTextFDC" md-selected-item-change="ctrl.selectedItemChangeFDC(fdc)" md-items="fdc in ctrl.entidadFDC | filter:ctrl.searchTextFDC"
+                            md-item-text="fdc.razonSocial" md-min-length="0" md-floating-label="Fondo de Cesantias">
+                            <md-item-template>
+                                <span class="item-title">
+					            <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+					            <span> {{fdc.razonSocial}} </span>
+                                </span>
+                            </md-item-template>
+                        </md-autocomplete>
+
+                    </div>
+
+                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                        <md-button class="md-raised " ng-click="insertarContrato()"><span class="glyphicon glyphicon-upload update" /> Guardar</md-button>
+                        <md-button class="md-raised " ng-click="clearForm()"><span class="glyphicon glyphicon-remove remove" /> Limpiar Datos</md-button>
+                    </section>
+                </form>
+            </md-content>
+            <md-content flex layout-margin>
+                <div id="gridContratos" class="panel panel-primary">
+
+                    <div class="panel-heading">
+                        <p>Listado de Contratos</p>
+                    </div>
+
+                    <!-- Binds the grid component to be displayed. -->
+                    <div class="gridStyleEmp" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection ui-grid-exporter ui-grid-auto-resize ui-grid-cellnav ui-grid-edit ui-grid-expandable ng-if="!refresh" ui-grid="gridOptionsContratos"></div>
+
+                </div>
+            </md-content>
+
+        </div>
+    </div>
+</div>

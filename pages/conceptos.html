@@ -1,0 +1,177 @@
+<div class="container-fluid text-left" id="empleadosForm">
+	<div class="row content">
+    	
+		<div class="col-sm-12 ">
+			<div class="col-sm-12  panel-nomina text-left">
+				<h3 >Modulo Conceptos</h3>
+			    <button type="button" class="btn btn-primary btn-sm" style="position:absolute;bottom:10px;right:20px;" data-toggle="modal" ng-click="insertRow()"><span class="glyphicon glyphicon-user"></span> Nuevo Concepto</button>
+		    </div>
+			<div class="col-sm-12 text-left">
+				<div id="gridConcepto" class="panel panel-primary" >
+				    
+				    <div class="panel-heading">
+				      <p>Listado de Conceptos</p>
+				    </div>
+				 
+				    <!-- Binds the grid component to be displayed. -->
+				    <div class="gridStyleEmp" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection ui-grid-exporter ui-grid-auto-resize ui-grid-cellnav ui-grid-edit ui-grid-expandable ng-if="!refresh" ui-grid="gridOptionsConcepto" ></div>
+				    
+				</div>
+			</div>
+		</div>
+	</div>    
+</div>
+
+<div class="modal fade" id="conceptosModal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>{{titleModal}}</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form" >
+
+					<div class="row content">
+						<div class="col-sm-12 ">	
+							  <div class="form-group">
+							    
+							    <div class="col-sm-3">
+							      <label class="control-label " for="codigo">Código:</label>	
+							      <input type="text" class="form-control" id="codigo" ng-model="concepto.codigo" placeholder="Codigo Concepto" required>
+							    </div>
+							    <div class="col-sm-6">
+							      <label class="control-label " for="descripcion">Descripción:</label>
+							      <input type="text" class="form-control" id="descripcion" ng-model="concepto.descripcion" placeholder="Descripción Concepto">
+							    </div>
+							    <div class="col-sm-3">
+							      <label class="control-label " for="tipoNomina">Tipo Nomina:</label>
+							       <select class="form-control" name="tipoNomina" id="tipoNomina" ng-model="concepto.tipoNomina" required>
+								      <option value="estandar">Estandar</option>
+								      <option value="avanzada">Avanzada</option>
+								  </select>
+							    </div>
+							   
+							  </div>
+							  <div class="form-group">
+							  	 <div class="col-sm-3">
+							      <label class="control-label" for="naturaleza">Naturaleza:</label>
+							      <select class="form-control" name="naturaleza" id="naturaleza" ng-model="concepto.naturaleza" required>
+								      <option value="devengo">Devengo</option>
+								      <option value="deduccion">Deducción</option>
+								      <option value="prestaciones">Prestaciones Sociales</option>
+								  </select>
+							    </div>
+							  	<div class="col-sm-2"> 
+							      <label class="control-label " for="tipo">Tipo:</label>
+							      <select class="form-control" name="tipo" id="tipo" ng-model="concepto.tipo" required>
+								      <option value="dias">Días</option>
+								      <option value="horas">Horas</option>
+								      <option value="valor">Valor</option>
+								  </select>
+							    </div>
+
+							    <div class="col-sm-3">
+							    	<label class="control-label " for="factor">Factor:</label>
+							      	<input type="text" class="form-control" id="factor" ng-model="concepto.factor" required placeholder="Factor Ej:1.7%" required>
+							    </div>
+							    <div class="col-sm-4">
+							    	<label class="control-label " for="formula">Formula:</label>
+							      	<input type="text" class="form-control" id="formula" ng-model="concepto.formula" required placeholder="Formula Concepto" required>
+							    </div>
+							  </div>
+
+							  <div class="form-group">
+							  	<div class="col-sm-3">
+							      <label class="control-label " for="ibcSeguridadSocial">IBC Seguridad Social:</label>	
+							      <select class="form-control" name="ibcSeguridadSocial" id="ibcSeguridadSocial" ng-model="concepto.ibcSeguridadSocial" required>
+								      <option value="70">70% Salario</option>
+								      <option value="mes actual">Mes Actual</option>
+								      <option value="mes anterior">Mes Anterior</option>
+								      <option value="na">N/A</option>
+								  </select>
+							    </div>
+							  	<div class="col-sm-3">		
+							      <label class="control-label " for="clasificacion">Clasificación:</label>					    	
+							      <select class="form-control" name="clasificacion" id="clasificacion" ng-model="concepto.clasificacion" required>
+								      <option value="intocable">Intocable</option>
+								      <option value="modificable">Modificable</option>
+								  </select>
+							    </div>
+							    <div class="col-sm-3"> 
+							      <label class="control-label " for="modoLiquidacion">Modo Liquidación:</label>							    
+							      <select class="form-control" name="modoLiquidacion" id="modoLiquidacion" ng-model="concepto.modoLiquidacion" required>
+								      <option value="1">AFC</option>
+								      <option value="2">Anticipo</option>
+								      <option value="3">Ausentismo</option>
+								      <option value="4">Embargos</option>
+								      <option value="5">Gastos Viaje</option>
+								      <option value="6">Libranza</option>
+								      <option value="7">No Salarial</option>
+								      <option value="8">Pension Voluntaria</option>
+								      <option value="9">Prestaciones</option>
+								      <option value="10">Prestaciones Sociales</option>
+								      <option value="11">Retencion en la Fuente</option>
+								      <option value="12">Salarial</option>
+								      <option value="13">Seguridad Social</option>
+								      <option value="14">Tercero</option>
+								      <option value="15">Transporte</option>
+									  <option value="16">Novedad Fija</option>
+									  <option value="17">Prestamos</option>
+								  </select>
+							    </div>
+							    <div class="col-sm-3"> 
+							      <label class="control-label " for="relacionadoCon">Relacionado Con:</label>							    
+							      <select class="form-control" name="relacionadoCon" id="relacionadoCon" ng-model="concepto.relacionadoCon" required>
+								      <option value="1">Ausentismo</option>
+								      <option value="2">Embargo</option>
+								      <option value="3">Formula</option>
+								      <option value="4">Novedad</option>
+								      <option value="5">Novedad Fija</option>
+								      <option value="6">Prestamo</option>
+								  </select>
+							    </div>
+							  </div>
+							  <div class="form-group">
+							  	 
+							  	 <h5>Este concepto aplica para:</h5>
+							    
+							    <div class="col-sm-3">
+							    	<md-checkbox ng-model="concepto.cruzaConSalario" aria-label="Checkbox 1">Cruza con salario</md-checkbox>
+							    	<md-checkbox ng-model="concepto.pagoIndirecto" aria-label="Checkbox 1">Pago Indirecto</md-checkbox>
+							    	<md-checkbox ng-model="concepto.aplicaSubsidioTransporte" aria-label="Checkbox 1">Subsidio Transporte</md-checkbox>
+							    	<md-checkbox ng-model="concepto.aplicaVacacionesDinero" aria-label="Checkbox 1">Vacaciones Dinero</md-checkbox>
+							    	<md-checkbox ng-model="concepto.aplicaVacacionesDisfrute" aria-label="Checkbox 1">Vacaciones Disfrute</md-checkbox>
+							    </div>
+							    <div class="col-sm-3">
+							    	<md-checkbox ng-model="concepto.aplicaPrimaServicios" aria-label="Checkbox 1">Prima Servicios</md-checkbox>
+							    	<md-checkbox ng-model="concepto.aplicaCajaCompensacion" aria-label="Checkbox 1">Caja Compensación</md-checkbox>
+							    	<md-checkbox ng-model="concepto.indemnizacion" aria-label="Checkbox 1">Indemnización</md-checkbox>
+							    	<md-checkbox ng-model="concepto.contratoLiqVacaciones" aria-label="Checkbox 1">Contrato Liq. Vacaciones</md-checkbox>
+							    </div>
+							    <div class="col-sm-3">
+							    	<md-checkbox ng-model="concepto.aplicaPension" aria-label="Checkbox 1">Pension</md-checkbox>
+							    	<md-checkbox ng-model="concepto.aplicaRetencion" aria-label="Checkbox 1">Retencion</md-checkbox>
+							    	<md-checkbox ng-model="concepto.aplicaCesantias" aria-label="Checkbox 1">Cesantias</md-checkbox>
+							    	<md-checkbox ng-model="concepto.bonificacion" aria-label="Checkbox 1">Bonificación</md-checkbox>
+							    	<md-checkbox ng-model="concepto.aplicaLey1393" aria-label="Checkbox 1">Ley 1393</md-checkbox>
+							    </div>
+							    <div class="col-sm-2">
+							    	<md-checkbox ng-model="concepto.aplicaICBF" aria-label="Checkbox 1">ICBF</md-checkbox>
+							    	<md-checkbox ng-model="concepto.aplicaSENA" aria-label="Checkbox 1">SENA</md-checkbox>
+							    	<md-checkbox ng-model="concepto.aplicaArl" aria-label="Checkbox 1">ARL</md-checkbox>
+							    	<md-checkbox ng-model="concepto.aplicaSalud" aria-label="Checkbox 1">Salud</md-checkbox>
+							    </div>
+							    
+							  </div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-dismiss="modal" ng-click="insertarConcepto(toDo)">Guardar Datos</button>
+		        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+		        
+		    </div>
+		</div>
+	</div>
+</div>

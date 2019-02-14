@@ -1,0 +1,113 @@
+<div class="container-fluid text-left" id="empresasForm">
+    <div layout="column">
+        <div flex layout="column" style="overflow: auto; height: 100%;">
+            <md-content flex layout-margin>
+                <div class="panel-heading">
+                    <h3>Modulo Empresas</h3>
+                </div>
+                <md-divider></md-divider>
+                <form name="entidadesForm">
+                    <div layout="row">
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="10">
+                            <label>Id Empresa</label>
+                            <input  md-no-asterisk name="idEmpresa" ng-model="empresa.idEmpresa" disabled>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="25">
+                            <label>Razon Social</label>
+                            <input  required md-no-asterisk name="razonSocial" ng-model="empresa.razonSocial">
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="required">Este campo es requerido</div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="25">
+                            <label>Dirección</label>
+                            <input  required md-no-asterisk name="direccion" ng-model="empresa.direccion">
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="required">Este campo es requerido</div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="15">
+                            <label>Teléfono</label>
+                            <input  required md-no-asterisk name="telefono" ng-model="empresa.telefono">
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="required">Este campo es requerido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="6">
+                            <label>Nit</label>
+                            <input  required md-no-asterisk name="codigo" ng-model="empresa.nit">
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="required">Este campo es requerido</div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="20">
+                            <label>Digito Verificación</label>
+                            <input  required md-no-asterisk name="paginaWeb" ng-model="empresa.digitoVerificacion">
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="required">Este campo es requerido</div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="20">
+                            <label>Correo Electronico</label>
+                            <input  required md-no-asterisk name="email" ng-model="empresa.email">
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="required">Este campo es requerido</div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="20">
+                            <label>Celular</label>
+                            <input  required md-no-asterisk name="email" ng-model="empresa.celular">
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="required">Este campo es requerido</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                        <md-button class="md-raised " ng-click="insertarEmpresa()"><span class="glyphicon glyphicon-upload update"/> Guardar</md-button>
+                        <md-button class="md-raised " ng-click="clearEmpresa()"><span class="glyphicon glyphicon-remove remove"/> Limpiar Datos</md-button>
+                    </section>
+                </form>
+            </md-content>
+            <md-content flex layout-margin>
+                <div id="gridConcepto" class="panel panel-primary" >
+
+                    <div class="panel-heading">
+                        <p>Listado de Empresas</p>
+                    </div>
+
+                    <!-- Binds the grid component to be displayed. -->
+                    <div class="gridStyleEmp" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection ui-grid-exporter ui-grid-auto-resize ui-grid-cellnav ui-grid-edit ui-grid-expandable ng-if="!refresh" ui-grid="gridOptionsEmpresas" ></div>
+
+                </div>
+            </md-content>
+
+        </div>
+    </div>
+</div>

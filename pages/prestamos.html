@@ -1,0 +1,129 @@
+<div class="container-fluid text-left" id="contratosDiv">
+    <div layout="column">
+        <div flex layout="column" style="overflow: auto; height: 100%;">
+            <md-content flex layout-margin>
+                <div class="panel-heading">
+                    <h3>Modulo Prestamos</h3>
+                </div>
+                <md-divider></md-divider>
+                <form name="prestamosForm">
+                    <div layout-gt-sm="row">
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="10">
+                            <label>Id Prestamo</label>
+                            <input md-no-asterisk name="idPrestamo" ng-model="prestamo.idPrestamo" disabled>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="30">
+                            <label>Empresa</label>
+                            <md-select name="company" ng-model="ctrl.empresaSelected" ng-change="loadContratos()" required>
+                                <md-option ng-value="empresa" ng-repeat="empresa in empresas">{{ empresa.razonSocial }}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <div flex="25">
+                            <md-autocomplete md-selected-item="ctrl.selectedItemContrato" md-search-text-change="ctrl.searchTextChangeEmp(ctrl.searchText)" md-search-text="ctrl.searchText" md-selected-item-change="ctrl.selectedItemChangeEmp(contrato)" md-items="contrato in ctrl.contratos | filter:ctrl.searchText"
+                                md-item-text="contrato.empleado.primerNombre.concat(' ',contrato.empleado.segundoNombre, ' ',contrato.empleado.primerApellido, ' ',contrato.empleado.segundoApellido)" md-min-length="0" md-floating-label="Empleado">
+                                <md-item-template>
+                                    <span class="item-metadata">
+						            <span class="item-metastat">
+						              <strong>{{contrato.empleado.numeroDocumento}}</strong> 
+						            </span>
+                                    </span>
+                                    <span class="item-title">
+						            <span> {{contrato.empleado.primerNombre}} {{contrato.empleado.segundoNombre}} {{contrato.empleado.primerApellido}} {{contrato.empleado.segundoApellido}}</span>
+                                    </span>
+
+                                </md-item-template>
+                            </md-autocomplete>
+                        </div>
+                    </div>
+                    <div layout="row">
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="15">
+                            <label>Valor Total</label>
+                            <input required md-no-asterisk name="valorTotal" ng-model="prestamo.valorTotal" type="number" ng-pattern="" step="0.01">
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="required">Este campo es requerido</div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="15">
+                            <label>Número Cuotas</label>
+                            <input required md-no-asterisk name="cuotas" ng-model="prestamo.cuotas" type="number" ng-pattern="" step="0.01">
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="required">Este campo es requerido</div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="15">
+                            <label>Fecha Inicio</label>
+                            <md-datepicker ng-model="prestamo.fechaInicio" name="fechaInicial" md-min-date="minDate" md-max-date="maxDate" md-open-on-focus></md-datepicker>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="10">
+                            <label>Periodicidad Pago</label>
+                            <md-select name="type" ng-model="prestamo.periodoPago" required>
+                                <md-option value="QUINCENAL">Quincenal</md-option>
+                                <md-option value="MENSUAL">Mensual</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <div flex="20">
+                            <md-autocomplete md-selected-item="ctrl.selectedItemConcepto" md-search-text="ctrl.searchTextConcepto" md-items="item in ctrl.conceptos | filter:ctrl.searchTextConcepto" md-item-text="item.descripcion" md-min-length="0" md-floating-label="Concepto">
+                                <md-item-template>
+                                    <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.descripcion}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    No se encontraron conceptos
+                                </md-not-found>
+                            </md-autocomplete>
+                        </div>
+                    </div>
+
+                    <div layout="row">
+                        <div flex="35" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+
+
+                    </div>
+
+                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                        <md-button class="md-raised " ng-click="insertarPrestamo()"><span class="glyphicon glyphicon-upload update" /> Guardar</md-button>
+                        <md-button class="md-raised " ng-click="limpiarFormulario()"><span class="glyphicon glyphicon-remove remove" /> Limpiar Datos</md-button>
+                    </section>
+                </form>
+            </md-content>
+            <md-content flex layout-margin>
+                <div id="gridContratos" class="panel panel-primary">
+
+                    <div class="panel-heading">
+                        <p>Listado de Prestamos</p>
+                    </div>
+
+                    <!-- Binds the grid component to be displayed. -->
+                    <div class="gridStyleEmp" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection ui-grid-exporter ui-grid-auto-resize ui-grid-cellnav ui-grid-edit ui-grid-expandable ng-if="!refresh" ui-grid="gridOptionsPrestamos"></div>
+
+                </div>
+            </md-content>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="container-fluid text-left" id="empleadosForm">
+    <div layout="column">
+        <div flex layout="column" style="overflow: auto; height: 100%;">
+            <md-content flex layout-margin>
+                <div class="panel-heading">
+                    <h3>Modulo Centros de Costos</h3>
+                </div>
+                <md-divider></md-divider>
+                <form name="entidadesForm">
+                    <div layout="row">
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="10">
+                            <label>Id Centro Costos</label>
+                            <input  md-no-asterisk name="idCentroCostos" ng-model="centroCostos.idCentroCostos" disabled>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="15">
+                            <label>Codigo Centro Costos</label>
+                            <input  md-no-asterisk name="codigo" ng-model="centroCostos.codigo" >
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="25">
+                            <label>Describción</label>
+                            <input  required md-no-asterisk name="descripcion" ng-model="centroCostos.descripcion">
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="required">Este campo es requerido</div>
+                            </div>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+					          <!-- Spacer //-->
+					     </div>
+                        <md-input-container class="md-block" flex="20">
+					        <label>Tipo Centro Costos</label>
+					        <md-select name="type" ng-model="centroCostos.tipo" required>
+				            	<md-option value="CENTRO_COSTOS">CENTRO COSTOS</md-option>
+				            	<md-option value="SUB_CENTRO_COSTOS">SUB CENTRO COSTOS</md-option>
+				            	<md-option value="CLASIFICADOR_UNO">CLASIFICADOR UNO</md-option>
+				            	<md-option value="CLASIFICADOR_DOS">CLASIFICADOR DOS</md-option>
+				            </md-select>
+					     </md-input-container>
+						<div flex="5" hide-xs hide-sm><!-- Spacer //--></div>
+					    <div flex="15" >
+					        <md-autocomplete
+						          md-selected-item="ctrl.selectedItemCentroCostos"
+						          md-search-text-change="ctrl.searchTextChange(ctrl.searchTextCentroCostos)"
+						          md-search-text="ctrl.searchTextCentroCostos"
+						          md-selected-item-change="ctrl.selectedItemChange(centro)"
+						          md-items="centro in ctrl.centrosCostosType | filter:ctrl.searchTextCentroCostos"
+						          md-item-text="centro.descripcion"
+						          md-min-length="0"
+	        					  md-floating-label="Centro Costos">
+						        <md-item-template>
+						          <span class="item-title">
+						            <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+						            <span> {{centro.descripcion}} </span>
+						          </span>
+						        </md-item-template>
+						     </md-autocomplete>
+						 </div>
+                    </div>
+
+                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                        <md-button class="md-raised " ng-click="insertarCentroCostos()"><span class="glyphicon glyphicon-upload update"/> Guardar</md-button>
+                        <md-button class="md-raised " ng-click="clearCentroCostos()"><span class="glyphicon glyphicon-remove remove"/> Limpiar Datos</md-button>
+                    </section>
+                </form>
+            </md-content>
+            <md-content flex layout-margin>
+                
+                    <div id="gridCentroCostos" class="panel panel-primary" >
+
+                        <div class="panel-heading">
+                            <p>Listado de Centros Costos</p>
+                        </div>
+
+                        <!-- Binds the grid component to be displayed. -->
+                        <div class="gridStyleEmp" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection ui-grid-exporter ui-grid-auto-resize ui-grid-cellnav ui-grid-edit ui-grid-expandable ng-if="!refresh" ui-grid="gridCentroCostos" ></div>
+
+                    </div>
+            </md-content>
+
+        </div>
+    </div>
+</div>

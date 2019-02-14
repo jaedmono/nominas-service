@@ -1,0 +1,59 @@
+<md-dialog aria-label="Novedades Por Empleado">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Novedades para: {{empleado.employeeName}}, No. Documento {{empleado.document}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                <md-icon md-svg-src="images/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content ng-cloak>
+        <div class="md-dialog-content">
+            <form ng-submit="$event.preventDefault()">
+                <div layout-gt-sm="row">
+                    <div flex="60" >
+                        <md-autocomplete
+                                md-selected-item="ctrl.selectedItem"
+                                md-search-text="ctrl.searchText"
+                                md-items="item in ctrl.conceptos | filter:ctrl.searchText"
+                                md-item-text="item.descripcion"
+                                md-min-length="0"
+                                placeholder="Digite un concepto">
+                            <md-item-template>
+                                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.descripcion}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                No se encontraron conceptos
+                            </md-not-found>
+                        </md-autocomplete>
+                    </div>
+                    <div flex="5" hide-xs hide-sm>
+                        <!-- Spacer //-->
+                    </div>
+                    <md-input-container class="md-icon-float md-block" flex="35">
+                        <label>Cantidad / Valor</label>
+                        <input ng-model="novedad.cantidad" type="number">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <div flex>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> Listado Novedades Empleado Nomina </div>
+                            <div class="listNovedades">
+                                <div id="grid1" class="gridStyleChanges" ui-grid-edit ui-grid-cellNav ui-grid="gridChangesPayroll"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <md-button aria-label="Finished" ng-click="ctrl.addNovedad($event)">Adicionar</md-button>
+    </md-dialog-actions>
+</md-dialog>
+

@@ -1,0 +1,152 @@
+<div class="container-fluid text-left" id="nominaForm">
+    <div class="col-sm-12  panel-nomina text-left">
+        <p>
+            <div style="position:relative;">
+                <h3>Modulo de Nomina</h3>
+            </div>
+        </p>
+        <div layout="row" layout-sm="column">
+            <div flex>
+                <form name="entidadesForm">
+                    <div layout="row">
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="30">
+                            <label>Empresa</label>
+                            <md-select name="company" ng-model="empresaSelected" ng-change="loadNominas(empresa.idEmpresa)" required>
+                                <md-option ng-value="empresa" ng-repeat="empresa in empresas">{{ empresa.razonSocial }}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="30">
+                            <label>Tipo Nomina</label>
+                            <md-select name="type" ng-model="nomina.tipoNomina" ng-change="updatePeriod(nomina.tipoNomina)" required>
+                                <md-option value="QUINCENAL">Quincenal</md-option>
+                                <md-option value="MENSUAL">Mensual</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="35">
+                            <label>Fecha Pago</label>
+                            <md-datepicker ng-model="nomina.fechaPago" name="fechaPago" md-min-date="minDate" md-max-date="maxDate" md-open-on-focus></md-datepicker>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="40">
+                            <label>Periodo Pago</label>
+                            <input md-no-asterisk name="periodoPago" ng-model="nomina.periodoPago" disabled>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                    </div>
+                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                        <md-button class="md-raised " ng-click="insertarNomina()"><span class="glyphicon glyphicon-upload update" /> Iniciar Nomina</md-button>
+                        <md-button class="md-raised " ng-click="clearNomina()"><span class="glyphicon glyphicon-remove remove" /> Limpiar Datos </md-button>
+                        <md-button class="md-raised " data-toggle="modal" data-target="#upLoadFileModal"><span class="glyphicon glyphicon-folder-open"></span> Cargar Archivo Novedades</md-button>
+                        <md-button class="md-raised " data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-filter"></span> Filtrar Listado</md-button>
+                    </section>
+
+                </form>
+                <p>
+
+                </p>
+                <div flex>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><span class="glyphicon glyphicon-list-alt"></span> Listado Nominas</div>
+                        <div class="gridStyleEmp">
+                            <table ng-table class="table">
+                                <tr>
+                                    <th>Opción</th>
+                                    <th>Estado</th>
+                                    <th>Id</th>
+                                    <th>Tipo</th>
+                                    <th>Periodo</th>
+                                    <th>Fecha Pago</th>
+                                    <th>Ver Detalle</th>
+                                </tr>
+                                <tr ng-repeat="nominaLst in nominas" style="text-align:center">
+                                    <td data-title="Opcion"><span class="glyphicon glyphicon-remove remove" ng-click="deleteRow(nominaLst)"></span></td>
+                                    <td data-title="Estado">
+                                        <h5><span class="label label-success">{{ nominaLst.estado }}</span></h5>
+                                    </td>
+                                    <td data-title="Id">{{nominaLst.idNomina }}</td>
+                                    <td data-title="Tipo">{{nominaLst.tipoNomina}}</td>
+                                    <td data-title="Periodo">{{nominaLst.periodoPago}}</td>
+                                    <td data-title="Fecha Pago">{{nominaLst.fechaPago}}</td>
+                                    <td data-title="Ver Detalle">
+                                        <md-button class="md-icon-button md-primary" title="Ir a nomina" aria-label="Settings" ng-click="goToNomina(nominaLst.idNomina)">
+                                            <md-icon md-svg-icon="images/icons/ic_launch_48px.svg"></md-icon>
+                                        </md-button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><span class="glyphicon glyphicon-filter"></span> Filtrar Listado Nominas</h4>
+            </div>
+            <div class="modal-body">
+                <form name="formFiltros" class="form-inline">
+
+                    <label for="fechaInicial">Fecha Inicial:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="date" class="form-control" id="fechaInicial" ng-model="fechaInicial" placeholder="dd--MM-yyyy" required>
+                    </div>
+                    <label for="fechaFinal">Fecha Final:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="date" class="form-control" id="fechaFinal" ng-model="fechaFinal" placeholder="dd--MM-yyyy" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="ocultarNovedades('formNovedades')">
+                    <span class="glyphicon glyphicon-filter"></span> Filtrar
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="upLoadFileModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><span class="glyphicon glyphicon-list"></span> Cargar Archivo Novedades</h4>
+            </div>
+            <div class="modal-body">
+                <form name="formFiltros" class="form-inline">
+                    <div>
+                        <input type="file" file-model="myFile" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-dismiss="modal" ng-click="uploadFile()">Cargar Archivo</button>
+                <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

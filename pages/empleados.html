@@ -1,0 +1,121 @@
+<div class="container-fluid text-left" id="empleadosForm">
+	<div class="row content">
+    	
+		<div class="col-sm-12 ">
+			<div class="col-sm-12  panel-nomina text-left">
+				<h3 >Modulo Empleados</h3>
+			    <button type="button" class="btn btn-primary btn-sm" style="position:absolute;bottom:10px;right:20px;" data-toggle="modal" ng-click="insertRow()"><span class="glyphicon glyphicon-user"></span> Nuevo Empleado</button>
+		    </div>
+			<div class="col-sm-12 text-left">
+				<div id="gridEmp" class="panel panel-primary" >
+				    
+				    <div class="panel-heading">
+				      <p>Listado de Empleados</p>
+				    </div>
+				 
+				    <!-- Binds the grid component to be displayed. -->
+				    <div class="gridStyleEmp" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection ui-grid-exporter ui-grid-auto-resize ui-grid-cellnav ui-grid-edit ui-grid-expandable ng-if="!refresh" ui-grid="gridOptionsEmp" ></div>
+				 
+				    <!--  Bind the pagination component to be displayed. -->
+				    <!--pagination direction-links="true" boundary-links="true"
+				                total-items="persons.totalResults" items-per-page="persons.pageSize"
+				                ng-model="persons.currentPage" ng-change="refreshGrid()">
+				    </pagination-->
+				</div>
+			</div>
+		</div>
+	</div>    
+</div>
+
+<div class="modal fade" id="empleadosModal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>{{titleModal}}</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form" >
+
+					<div class="row content">
+						<div class="col-sm-12 ">	
+							  <div class="form-group">
+							    
+							    <div class="col-sm-3">
+							      <label class="control-label " for="primerNombre">Primer Nombre:</label>	
+							      <input type="text" class="form-control" id="primerNombre" ng-model="empleado.primerNombre" placeholder="Ingrese Primer Nombre" required>
+							    </div>
+							    <div class="col-sm-3">
+							      <label class="control-label " for="segundoNombre">Segundo Nombre:</label>
+							      <input type="text" class="form-control" id="segundoNombre" ng-model="empleado.segundoNombre" placeholder="Ingrese Segundo Nombre">
+							    </div>
+							    <div class="col-sm-3">
+							      <label class="control-label " for="primerApellido">Primer Apellido:</label>
+							      <input type="text" class="form-control" id="primerApellido" ng-model="empleado.primerApellido" placeholder="Ingrese Primer Apellido" required>
+							    </div>
+							    <div class="col-sm-3">
+							      <label class="control-label" for="segundoApellido">Segundo Apellido:</label>
+							      <input type="text" class="form-control" id="segundoApellido" ng-model="empleado.segundoApellido" placeholder="Ingrese Segundo Apellido">
+							    </div>
+							  </div>
+							  <div class="form-group">
+							  	<div class="col-sm-6"> 
+							      <label class="control-label " for="direccion">Dirección:</label>
+							      <input type="text" class="form-control" id="direccion" ng-model="empleado.direccion" placeholder="Ingrese dirección" required>
+							    </div>
+
+							    <div class="col-sm-3">
+							    	<label class="control-label " for="tipoDocumento">Tipo Documento:</label>
+							      <select class="form-control" name="tipoDocumento" id="tipoDocumento" ng-model="empleado.tipoDocumento" required>
+								      <option value="CC">Cédula Ciudadnía</option>
+								      <option value="TI">Tarjeta Identidad</option>
+								      <option value="PA">Pasaporte</option>
+								      <option value="CE">Cédula Extranjeria</option>
+								  </select>
+							    </div>
+							    <div class="col-sm-3">
+							      <label class="control-label " for="documento">Número Documento:</label>	
+							      <input type="text" class="form-control" id="documento" ng-model="empleado.numeroDocumento" required placeholder="Ingrese Número Documento" required>
+							    </div>
+							  </div>
+
+							  <div class="form-group">
+							  	<div class="col-sm-3">		
+							      <label class="control-label " for="fechaNacimiento">Fecha de Nacimiento:</label>					    	
+							      <input type="date" class="form-control" id="fechaNacimiento" ng-model="empleado.fechaNacimiento" placeholder="yyyy-MM-dd"  required required>
+							    </div>
+							    <div class="col-sm-6"> 
+							      <label class="control-label " for="email">Correo Electronio:</label>							    
+							      <input type="email" class="form-control" id="email" ng-model="empleado.email" placeholder="Ingrese Correo Electronico" required>
+							    </div>
+							    
+							  </div>
+							  <div class="form-group">
+							    <div class="col-sm-4"> 
+							    	<label class="control-label " for="celular">Celular:</label>
+							      <input type="number" class="form-control" id="celular" ng-model="empleado.celular" placeholder="Ingrese Celular">
+							    </div>
+							    <div class="col-sm-4"> 
+							    	<label class="control-label " for="telefono">Telefono Fijo:</label>
+							      <input type="number" class="form-control" id="telefono" ng-model="empleado.telefono" placeholder="Ingrese Telefono Fijo">
+							    </div>
+							    <div class="col-sm-3">
+							    	<label class="control-label " for="genero">Genero:</label>
+							    	<md-radio-group ng-model="genero" id="genero" >
+							    	  <md-radio-button value="M" aria-label="Masculino">Masculino</md-radio-button>
+									  <md-radio-button value="F" aria-label="Femenino">Femenino</md-radio-button>
+									  
+									</md-radio-group>
+							    </div>
+							  </div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-dismiss="modal" ng-click="insertEmpleado(toDo)">Guardar Datos</button>
+		        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+		        
+		    </div>
+		</div>
+	</div>
+</div>

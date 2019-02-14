@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="nominasApp">
+
+<head>
+    <title>SmartService Nominas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/3.3.6/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/ui-grid/ui-grid.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery/jquery.ui.theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/main-style.css">
+    <link rel="stylesheet" type="text/css" href="css/angular_material/1.1.0/angular-material.min.css">
+
+    <script type="text/javascript" src="js/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap/3.3.6/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+
+
+    <script src="//code.angularjs.org/1.6.0/angular.min.js"></script>
+    <script src="//code.angularjs.org/1.6.0/angular-route.min.js"></script>
+    <script src="//code.angularjs.org/1.6.0/angular-cookies.min.js"></script>
+
+    <script type="text/javascript" src="js/libs/angularjs/1.4.3/angular-touch.js"></script>
+
+    <script type="text/javascript" src="js/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script type="text/javascript" src="js/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script type="text/javascript" src="js/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script type="text/javascript" src="js/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+
+    <script type="text/javascript" src="js/ui-grid.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+    <script type="text/javascript" src="js/controllerContratos.js"></script>
+    <script type="text/javascript" src="js/controllerEntidades.js"></script>
+    <script type="text/javascript" src="js/controllerBancos.js"></script>
+    <script type="text/javascript" src="js/controllerCentroCostos.js"></script>
+    <script type="text/javascript" src="js/controllerNomina.js"></script>
+    <script type="text/javascript" src="js/controllerLiquidaNomina.js"></script>
+    <script type="text/javascript" src="js/controllerEmpresas.js"></script>
+    <script type="text/javascript" src="js/controllerUsuarios.js"></script>
+    <script type="text/javascript" src="js/controllerPrestamos.js"></script>
+    <script type="text/javascript" src="js/controllerNovedadesProgramdas.js"></script>
+    <script type="text/javascript" src="js/controllerAusentismos.js"></script>
+    <script type="text/javascript" src="js/controllerArchivosProcesados.js"></script>
+    <script type="text/javascript" src="js/controllerRegister.js"></script>
+    <script type="text/javascript" src="js/navbar.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/services/Authentication.js"></script>
+    <script type="text/javascript" src="js/services/flash.service.js"></script>
+    <script type="text/javascript" src="js/services/conceptos.service.js"></script>
+    <script type="text/javascript" src="js/services/contrato.service.js"></script>
+    <script type="text/javascript" src="js/services/descuento.service.js"></script>
+    <script type="text/javascript" src="js/services/novedad.programada.service.js"></script>
+    <script type="text/javascript" src="js/controllerLogin.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar-pp navbar-inverse ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+
+                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-stats"></span> SmartService</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle " data-toggle="dropdown">Administración<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/conceptos">Conceptos</a></li>
+                            <li><a href="#/periodos">Parametrizar Periodos</a></li>
+                            <li><a href="#/bancos">Bancos</a></li>
+                            <li><a href="#/empresas">Empresas</a></li>
+                            <li><a href="#/entidades">Seguridad Social y Parafiscales</a></li>
+                            <li><a href="#/centrocostos">Centros de Costos</a></li>
+                            <li><a href="#/usuarios">Usuarios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle " data-toggle="dropdown">Recursos Humanos<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/empleados">Empleados</a></li>
+                            <li><a href="#/contratos">Contratos</a></li>
+                            <li><a href="#/nomina">Nomina</a></li>
+                            <li><a href="#/archivosnovedades">Archivos Novedades</a></li>
+                            <li><a href="#/prestamos">Prestamos</a></li>
+                            <li><a href="#/novedadesprogramadas">Novedades Programadas</a></li>
+                            <li><a href="#/ausentismos">Ausentismos</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle " data-toggle="dropdown">Reportes<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/soportenomina">Soporte de Nomina</a></li>
+                            <li><a href="#/soportenominaprovision">Soporte Nomina y Provision</a></li>
+                            <li><a href="#/informepersonal">Informe de Personal</a></li>
+                            <li><a href="#/acumuladotrabajador">Acumulado Trabajador</a></li>
+                            <li><a href="#/informeconcepto">Informe por Concepto</a></li>
+                            <li><a href="#/comprobantespago">Comprobantes de Pago</a></li>
+                            <li><a href="#/comprobantesliquidacion">Comprobantes de Liquidacion</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <strong>{{globals.currentUser.user.login}}</strong>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <p class="text-center">
+                                                <span class="glyphicon glyphicon-user icon-size"></span>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <p class="text-left"><strong>{{globals.currentUser.user.nombre}} {{globals.currentUser.user.apellido}}</strong></p>
+                                            <p class="text-left small">{{globals.currentUser.user.email}}</p>
+                                            <p class="text-left">
+                                                <a href="#" class="btn btn-primary btn-block btn-sm">Actualizar Datos</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="navbar-login navbar-login-session">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                <a href="#" class="btn btn-danger btn-block">Cerrar Sesion</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+    <div ng-view id="view" name="view"></div>
+
+    <footer class="container-fluid text-right">
+        <div class="vcard">
+            <h3 class="fn org">Smart Service Center</h3>
+            <p>Teléfono: <a class="tel" href="tel:+5714636971">+57(1) 4636971</a></p>
+            <p><span class="street-address">Carrera 47A #22A -96</span>, <span class="extended-address">Piso 3 oficina 02</span> <br>
+                <span class="locality">Bogotá</span><br>
+                <span class="country-name">Colombia</span></p>
+            <p><a class="email" href="info@smartservice.com">info@smartservice.com</a></p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="VerifyModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{verifyTitle}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{verifyMessage}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Confirmar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

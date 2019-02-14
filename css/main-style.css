@@ -1,0 +1,215 @@
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+
+    .panel-nomina{
+      position: relative;
+      min-height: 1px;
+      padding-right: 15px;
+      padding-left: 15px;
+
+    }
+
+    .datos-totales{
+      padding-top: 55px;
+      color: white;
+    }
+
+    .td-number{
+      text-align: right;
+      padding-right: 15px;
+      width: 140px;
+    }
+
+    .td-txt{
+      text-align: left;
+      padding-left: 15px;
+      width: 200px;
+    }
+
+    .td-date{
+      text-align: center;
+      width: 30px;
+    }
+
+    th{
+      text-align: center;
+
+    }
+
+    .td-days{
+      text-align: center;
+      width: 30px;
+
+    }
+
+    .td-id{
+      text-align: center;
+      width: 50px;
+    }
+
+    .td-documento{
+      text-align: center;
+    }
+
+
+    .grid-cell-style{
+
+        text-align:center;
+    }
+
+    .grid-cell-style-number{
+        text-align:right;
+    }
+    .gridStyle {
+        border: 1px solid rgb(212,212,212);
+        width: 100%; 
+        height: 430px;
+    }
+
+    .gridStyleEmp {
+        border: 1px solid rgb(212,212,212);
+        width: 99.7%; 
+        height: 430px;
+        font-size: 12px;
+    }
+
+    .gridStyleChanges{
+        border: 1px solid rgb(212,212,212);
+        width: 99.7%;
+        height: 99%;
+        font-size: 12px;
+    }
+
+    .listNovedades {
+            border: 1px solid rgb(212,212,212);
+            width: 100%;
+            height: 330px;
+            font-size: 12px;
+        }
+
+    .my-custom-menu {
+      position: absolute;
+    }
+     
+    .my-custom-menu .ui-grid-menu {
+      padding: 0px;
+    }
+     
+    .my-custom-menu .ui-grid-menu-inner {
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+
+    .glyphicon {
+      font-size: 12px;
+    }
+
+    
+    .totales{
+      height: 560px;
+      background-color: #F2F2F2; 
+      font-style: oblique;
+
+      color: #0080FF;
+      padding-top: 50px;
+    }
+
+    .navbar-pp {
+        margin-bottom: 0;
+        background-color: #0080FF;
+        z-index: 9999;
+        border: 0;
+        font-size: 12px !important;
+        line-height: 1.42857143 !important;
+        letter-spacing: 4px;
+        border-radius: 0;
+    }
+
+    .navbar-pp li a, .navbar-pp .navbar-brand {
+        color: #D8D8D8 !important;
+    }
+
+    .navbar-nav li a:hover, .navbar-nav li.active a {
+        color: #0080FF !important;
+        background-color: #fff !important;
+    }
+
+    .sub-menu{
+      color: #0080FF !important;
+    }
+
+    .navbar-default .navbar-toggle {
+        border-color: transparent;
+        color: #fff !important;
+    }
+
+    .remove{
+      color: red;
+      font-size: 15px;
+      padding-top: 5px;
+      cursor: pointer;
+    }
+
+    .update{
+      color: green;
+      font-size: 15px;
+      padding-top: 5px;
+      cursor: pointer;
+    }
+
+    .confirm{
+      color: blue;
+      font-size: 15px;
+      padding-top: 5px;
+      cursor: pointer;
+    }
+
+    .navbar-login
+    {
+        width: 305px;
+        padding: 10px;
+        padding-bottom: 0px;
+    }
+
+    .navbar-login-session
+    {
+        padding: 10px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+    }
+
+    .icon-size
+    {
+        font-size: 87px;
+    }
+
+    

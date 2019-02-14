@@ -1,0 +1,72 @@
+<div class="container-fluid text-left" id="periodosDiv" >
+    <div layout="column">
+        <div flex layout="column" style="overflow: auto; height: 100%;">
+            <md-content flex layout-margin>
+                <div class="panel-heading">
+                    <h3>Parametrización Periodos Nomina</h3>
+                </div>
+                <md-divider></md-divider>
+                <form name="periodosForm">
+                    <div layout-gt-sm="row">
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="30">
+                            <label>Empresa</label>
+                            <md-select name="company" ng-model="empresaSelected" ng-change="loadPeriodos(empresa.idEmpresa)" required>
+                                <md-option ng-value="empresa" ng-repeat="empresa in empresas">{{ empresa.razonSocial }}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="15">
+                            <label>Tipo Nomina</label>
+                            <md-select name="type" ng-model="tipoNomina" required>
+                                <md-option value="QUINCENAL">QUINCENAL</md-option>
+                                <md-option value="MENSUAL">MENSUAL</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <div flex="5" hide-xs hide-sm>
+                            <!-- Spacer //-->
+                        </div>
+                        <md-input-container class="md-block" flex="10">
+                            <label>Año</label>
+                            <md-select name="type" ng-model="year" required>
+                                <md-option value="2017">2017</md-option>
+                                <md-option value="2018">2018</md-option>
+                                <md-option value="2018">2019</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                        <md-button class="md-raised " ng-click="generarPeriodos()"><span class="glyphicon glyphicon-upload update"/> Generar Periodos</md-button>
+                        <md-button class="md-raised " ng-click="limpiarDatos()"><span class="glyphicon glyphicon-remove remove"/> Limpiar Datos</md-button>
+                    </section>
+                </form>
+            </md-content>
+            <md-content flex layout-margin>
+                <div id="gridContratos" class="panel panel-primary" >
+
+                    <div class="panel-heading">
+                        <p>Listado de Periodos Generados</p>
+                    </div>
+
+                    <!-- Binds the grid component to be displayed. -->
+                    <div class="gridStyleEmp" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection ui-grid-exporter ui-grid-auto-resize ui-grid-cellnav ui-grid-edit ui-grid-expandable ng-if="!refresh" ui-grid="gridPeriodos" ></div>
+
+                </div>
+            </md-content>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="mapBottons.html">
+    <div class="ui-grid-cell-contents">
+        <button type="button" class="btn btn-success btn-xs" ng-click="grid.appScope.updateRow(row,$event)">
+            <span class="glyphicon glyphicon-upload"></span> Actualizar
+        </button>
+    </div>
+</script>
+

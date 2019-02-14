@@ -1,0 +1,20 @@
+<div class="container-fluid text-left" >    
+  <div class="row content">
+    <div class="col-sm-12  panel-nomina text-left"> 
+      <p>
+        <div style="position:relative;" >
+        <h3 >Información Nomina</h3>
+        <button type="button" class="btn btn-primary btn-sm"  style="position:absolute;bottom:0px;right:0px;"  ng-click="backToNomina(nominaLst.idNomina)"><span class="glyphicon glyphicon-chevron-left">&nbsp;</span> Volver</button>
+        </div>
+      </p>
+      <div class="panel panel-primary">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+          <p>Nomina: <kbd><strong>{{nomina.tipoNomina}}</strong></kbd> <br>Periodo de la Nomina: <strong>{{nomina.periodoPago}}</strong> </p>
+        </div>
+        <div id="grid1" class="gridStyle" ui-grid-edit ui-grid-cellNav ui-grid="gridOptions"></div>
+      </div>
+    </div>  
+  </div>
+</div>
+
